@@ -15,6 +15,7 @@ const Map tlValues = {
       },
       'selecbtns': {
         '0': {
+          'label': 'Select a Covid Medicine:',
           'hintText': '<Select Covid Medicine>'
         }
       },
@@ -44,6 +45,7 @@ const Map tlValues = {
       },
       'selecbtns': {
         '0': {
+          'label': 'covidの薬を選ぶ:',
           'hintText': '<コビドメディスンを選択>'
         }
       },

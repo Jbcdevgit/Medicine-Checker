@@ -23,6 +23,11 @@ const selectedMedText = TextStyle(
   fontWeight: FontWeight.bold,
 );
 
+const medItemBlueText = TextStyle(
+  fontSize: 15.0,
+  color: Colors.blue
+);
+
 const hintTextStyle = TextStyle(
   fontSize: 15.0,
   color: Colors.grey
