@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class MedicineService {
@@ -18,6 +19,24 @@ class MedicineService {
       return res.body;
     } catch (e) {
       return 'Something went wrong. Please try again later.';
+    }
+  }
+
+  Future getAllMedsJP() async {
+    try {
+      var res = await http.get(Uri.parse('$serverIP/covid-drug-jp/all'));
+      return json.decode(res.body);
+    } catch (e) {
+      return [];
+    }
+  }
+
+  Future getAllMedsEN() async {
+    try {
+      var res = await http.get(Uri.parse('$serverIP/covid-drug/all'));
+      return json.decode(res.body);
+    } catch (e) {
+      return [];
     }
   }
 }

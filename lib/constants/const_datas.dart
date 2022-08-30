@@ -1,5 +1,5 @@
 const List<Map<String, String>> medNames = [
-  { 'name': 'paracetamol', 'value': 'paracetamol' },
+  { 'name': 'Clozapine', 'value': 'clozapine' },
   { 'name': 'Monas', 'value': 'Monas' },
   { 'name': 'Monteir', 'value': 'Monteir' },
   { 'name': 'Tofen', 'value': 'Tofen' },

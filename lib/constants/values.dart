@@ -14,6 +14,15 @@ const formLabelText = TextStyle(
   fontSize: 15.0,
 );
 
+const medItemText = TextStyle(
+  fontSize: 15.0,
+);
+
+const selectedMedText = TextStyle(
+  fontSize: 13.0,
+  fontWeight: FontWeight.bold,
+);
+
 const hintTextStyle = TextStyle(
   fontSize: 15.0,
   color: Colors.grey
