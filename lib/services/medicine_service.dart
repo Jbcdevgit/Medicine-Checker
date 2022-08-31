@@ -12,8 +12,8 @@ class MedicineService {
     try {
       var res = await http.post(Uri.parse('$serverIP/covid-drug/search'),
       body: {
-          'main_drug': mainDrug,
-          'contradictory_drug[0]': currentMed
+        'main_drug': mainDrug,
+        'contradictory_drug[0]': currentMed.toLowerCase()
       });
       return res.body;
     } catch (e) {

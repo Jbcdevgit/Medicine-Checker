@@ -14,11 +14,11 @@ inputEmailDialougue(context) {
     context: context,
     builder: (BuildContext context) {
       return AlertDialog(
-        title: const Align(
+        title: Align(
           alignment: Alignment.center,
           child: Padding(
-            padding: EdgeInsets.only(top: 20.0),
-            child: Text('Follow to Proceed'),
+            padding: const EdgeInsets.only(top: 20.0),
+            child: Text(tlValues[lang]['homePage']['inputEmail']['header']),
           ),
         ),
         contentPadding: const EdgeInsets.only(top: 40.0, bottom: 40.0, left: 20.0, right: 20.0),
