@@ -8,18 +8,19 @@ class FormInputTextField extends StatelessWidget {
   final String? Function(String?)? validator;
   final double? height;
   final IconData? icon;
+  final bool displayIcon;
   final Function(String)? onChanged;
   final bool? obscure;
   const FormInputTextField({Key? key, @required this.controller, @required this.label, this.hintText, this.validator, this.onChanged,
-   this.height, this.icon, this.obscure}) : super(key: key);
+   this.height, this.displayIcon=true, this.icon, this.obscure}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Wrap(
-      alignment: WrapAlignment.start,
-      crossAxisAlignment: WrapCrossAlignment.start,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(label ?? '', style: formLabelText,),
+        const SizedBox(height: 3.0),
         Container(
           height: height ?? 40.0,
           decoration: BoxDecoration(
@@ -27,12 +28,15 @@ class FormInputTextField extends StatelessWidget {
           ),
           child: Row(
             children: [
-              ColoredBox(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Icon(icon ?? Icons.label, color: primaryColor,),
+              Visibility(
+                visible: displayIcon,
+                child: ColoredBox(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Icon(icon ?? Icons.label, color: primaryColor,),
+                  ),
+                  color: const Color(0xffe3e3e3),
                 ),
-                color: const Color(0xffe3e3e3),
               ),
               Expanded(
                 child: TextFormField(

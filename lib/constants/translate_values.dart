@@ -7,7 +7,11 @@ const Map tlValues = {
     },
     'homePage': {
       'text': 'If you are a covid patient, in our website you can check whether your covid'
-        ' medicines will conflict with your current medicine. Click on "Check Medicine"'
+        ' medicines will conflict with your current medicine. Click on "Check Medicine"',
+      'inputEmail': {
+        'label': 'Enter your email address:',
+        'errorText': 'Enter a valid email'
+      }
     },
     'checkMedicine': {
       'navbtns': {
@@ -37,7 +41,11 @@ const Map tlValues = {
       '1': 'ランゲージ'
     },
     'homePage': {
-      'text': 'コバイドの患者さんは、当サイトで、コバイドのお薬が現在飲んでいるお薬と相性が悪いかどうかを確認することができます。"薬の確認 "をクリックしてください。'
+      'text': 'コバイドの患者さんは、当サイトで、コバイドのお薬が現在飲んでいるお薬と相性が悪いかどうかを確認することができます。"薬の確認 "をクリックしてください。',
+      'inputEmail': {
+        'label': 'メールアドレスを入力してください',
+        'errorText': '無効な電子メールアドレス'
+      }
     },
     'checkMedicine': {
       'navbtns': {

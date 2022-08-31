@@ -1,6 +1,6 @@
 import 'package:cov_meds/constants/translate_values.dart';
 import 'package:cov_meds/constants/values.dart';
-import 'package:cov_meds/screens/check_meds.dart';
+import 'package:cov_meds/widgets/input_email_dialouge.dart';
 import 'package:cov_meds/widgets/nav_drop_down.dart';
 import 'package:cov_meds/widgets/navbar_button.dart';
 import 'package:flutter/material.dart';
@@ -14,8 +14,7 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text(tlValues[lang]['appName']),
         actions: [
-          NavbarButton(label: tlValues[lang]['navbtns']['0'], onTap: () => Navigator.push(context, 
-              MaterialPageRoute(builder: (context) => const CheckMedsScreen())),),
+          NavbarButton(label: tlValues[lang]['navbtns']['0'], onTap: () => inputEmailDialougue(context) ),
           NavDropDownBtn(
             label: tlValues[lang]['navbtns']['1'],
             onChange: (value) {

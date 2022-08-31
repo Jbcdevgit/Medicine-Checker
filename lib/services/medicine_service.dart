@@ -9,7 +9,6 @@ class MedicineService {
     // for(var i=0; i<currentMeds.length; i++) {
     //   args.addEntries({'contradictory_drug[$i]': currentMeds[i]}.entries);
     // }
-
     try {
       var res = await http.post(Uri.parse('$serverIP/covid-drug/search'),
       body: {
@@ -34,6 +33,25 @@ class MedicineService {
   Future getAllMedsEN() async {
     try {
       var res = await http.get(Uri.parse('$serverIP/covid-drug/all'));
+      return json.decode(res.body);
+    } catch (e) {
+      return [];
+    }
+  }
+
+  Future addUserEmail({required String? email}) async {
+    try {
+      var res = await http.post(Uri.parse('$serverIP/doctor-email/start'),
+      body: { 'email': email });
+      return res.body;
+    } catch (e) {
+      return 'Something went wrong. Please try again later.';
+    }
+  }
+
+  Future getAllEmails() async {
+    try {
+      var res = await http.get(Uri.parse('$serverIP/doctor-email/all'));
       return json.decode(res.body);
     } catch (e) {
       return [];

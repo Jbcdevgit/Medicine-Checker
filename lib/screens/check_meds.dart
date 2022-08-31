@@ -3,7 +3,7 @@ import 'package:cov_meds/constants/const_functions.dart';
 import 'package:cov_meds/constants/translate_values.dart';
 import 'package:cov_meds/constants/values.dart';
 import 'package:cov_meds/services/medicine_service.dart';
-import 'package:cov_meds/widgets/check_meds/form_input_text_field.dart';
+import 'package:cov_meds/widgets/form_input_text_field.dart';
 import 'package:cov_meds/widgets/med_list_item.dart';
 import 'package:cov_meds/widgets/select_button.dart';
 import 'package:flutter/material.dart';
