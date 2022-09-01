@@ -41,7 +41,7 @@ class _TextInputFieldState extends State<TextInputField> {
         }
         return null;
       },
-      cursorColor: Colors.black87,
+      cursorColor: primaryColor,
       decoration: InputDecoration(
         suffixIcon: Visibility(
           visible: widget.obscureText ?? false,

@@ -1,12 +1,16 @@
 import 'package:cov_meds/constants/translate_values.dart';
 import 'package:cov_meds/constants/values.dart';
-import 'package:cov_meds/widgets/input_email_dialouge.dart';
+import 'package:cov_meds/main.dart';
+import 'package:cov_meds/screens/check_meds.dart';
+import 'package:cov_meds/services/authencation_service.dart';
 import 'package:cov_meds/widgets/nav_drop_down.dart';
 import 'package:cov_meds/widgets/navbar_button.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+  HomePage({Key? key}) : super(key: key);
+  final authService = AuthenticationService(FirebaseAuth.instance);
 
   @override
   Widget build(BuildContext context) {
@@ -14,18 +18,23 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text(tlValues[lang]['appName']),
         actions: [
-          NavbarButton(label: tlValues[lang]['navbtns']['0'], onTap: () => inputEmailDialougue(context) ),
           NavDropDownBtn(
             label: tlValues[lang]['navbtns']['1'],
             onChange: (value) {
               lang = value;
-              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const HomePage()));
+              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomePage()));
             }, 
             items: const [
               {'name': '🇺🇸 English', 'value': 'en'},
               {'name': '🇯🇵 Japanese', 'value': 'jp'},
             ]
           ),
+          NavbarButton(label: tlValues[lang]['navbtns']['0'], onTap: () => Navigator.push(context, 
+              MaterialPageRoute(builder: (context) => const CheckMedsScreen()))),
+          NavbarButton(label: 'Logout', onTap: () async {
+            await authService.signOut();
+            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const AuthenticationWrapper()));
+          }),
           const SizedBox(width: 20.0,),
         ],
       ),

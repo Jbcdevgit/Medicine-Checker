@@ -1,9 +1,23 @@
 import 'package:cov_meds/constants/values.dart';
+import 'package:cov_meds/screens/auth/sign_up_page.dart';
 import 'package:cov_meds/screens/home_page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: const FirebaseOptions(
+      apiKey: "AIzaSyDUkbMEmQPIxc4VwcLo2rqU6ShVZvcX0Cg",
+      authDomain: "medicine-checker-5b3a3.firebaseapp.com",
+      projectId: "medicine-checker-5b3a3",
+      storageBucket: "medicine-checker-5b3a3.appspot.com",
+      messagingSenderId: "294597896559",
+      appId: "1:294597896559:web:83e26ec7c78d72f170209a",
+    )
+  );
   runApp(const MyApp());
 }
 
@@ -30,7 +44,23 @@ class MyApp extends StatelessWidget {
         ],
         background: Container(color: const Color(0xFFdddddd))),
       debugShowCheckedModeBanner: false,
-      home: const HomePage(),
+      home: const AuthenticationWrapper(),
+    );
+  }
+}
+
+class AuthenticationWrapper extends StatelessWidget {
+  const AuthenticationWrapper({Key? key}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return StreamBuilder(
+      stream: FirebaseAuth.instance.authStateChanges(),
+      builder: (context, snapshot) {
+        if(snapshot.hasData && snapshot.data != null) {
+          return HomePage();
+        }
+        return const SignUpPage();
+      },
     );
   }
 }

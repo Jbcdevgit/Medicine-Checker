@@ -32,3 +32,9 @@ const hintTextStyle = TextStyle(
   fontSize: 15.0,
   color: Colors.grey
 );
+
+const buttonTextBold = TextStyle(
+  fontSize: 15.0,
+  color: Colors.white,
+  fontWeight: FontWeight.bold
+);
