@@ -1,11 +1,10 @@
-import 'package:cov_meds/constants/values.dart';
 import 'package:flutter/material.dart';
 
 class NavDropDownBtn extends StatelessWidget {
-  final String label;
+  final Widget title;
   final Function onChange;
   final List<Map<String, String>> items;
-  const NavDropDownBtn({required this.label, required this.onChange, required this.items, Key? key}) : super(key: key);
+  const NavDropDownBtn({required this.title, required this.onChange, required this.items, Key? key}) : super(key: key);
 
 
   @override
@@ -13,7 +12,7 @@ class NavDropDownBtn extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(right: 50.0, top: 4.0),
       child: DropdownButton<String>(
-        icon: Text(label, style: navBtnStyle),
+        icon: title,
         hint: const Text(''),
         style: const TextStyle(fontSize: 14.0),
         dropdownColor: Colors.white,

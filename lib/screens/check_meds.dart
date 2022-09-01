@@ -77,14 +77,14 @@ class _CheckMedsScreenState extends State<CheckMedsScreen> {
         title: Text(tlValues[lang]['navbtns']['0']),
         actions: [
           NavDropDownBtn(
-            label: tlValues[lang]['navbtns']['1'],
+            title: Image.asset('assets/images/image.png', height: 18.0,),
             onChange: (value) {
               lang = value;
               Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const CheckMedsScreen()));
             }, 
             items: const [
-              {'name': '🇺🇸 English', 'value': 'en'},
-              {'name': '🇯🇵 Japanese', 'value': 'jp'},
+              {'name': '🇺🇸 EN', 'value': 'en'},
+              {'name': '🇯🇵 JP', 'value': 'jp'},
             ]
           ),
           NavbarButton(label: 'Logout', onTap: () async {
