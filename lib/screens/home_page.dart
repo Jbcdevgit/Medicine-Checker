@@ -31,11 +31,10 @@ class HomePage extends StatelessWidget {
           ),
           NavbarButton(label: tlValues[lang]['navbtns']['0'], onTap: () => Navigator.push(context, 
               MaterialPageRoute(builder: (context) => const CheckMedsScreen()))),
-          NavbarButton(label: 'Logout', onTap: () async {
+          NavbarButton(label: 'Logout', horizontalPadding: 35.0, onTap: () async {
             await authService.signOut();
             Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const AuthenticationWrapper()));
           }),
-          const SizedBox(width: 20.0,),
         ],
       ),
       body: Padding(
