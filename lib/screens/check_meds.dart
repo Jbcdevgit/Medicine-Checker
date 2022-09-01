@@ -2,10 +2,15 @@ import 'package:cov_meds/constants/const_datas.dart';
 import 'package:cov_meds/constants/const_functions.dart';
 import 'package:cov_meds/constants/translate_values.dart';
 import 'package:cov_meds/constants/values.dart';
+import 'package:cov_meds/main.dart';
+import 'package:cov_meds/services/authencation_service.dart';
 import 'package:cov_meds/services/medicine_service.dart';
 import 'package:cov_meds/widgets/form_input_text_field.dart';
 import 'package:cov_meds/widgets/med_list_item.dart';
+import 'package:cov_meds/widgets/nav_drop_down.dart';
+import 'package:cov_meds/widgets/navbar_button.dart';
 import 'package:cov_meds/widgets/select_button.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class CheckMedsScreen extends StatefulWidget {
@@ -17,6 +22,7 @@ class CheckMedsScreen extends StatefulWidget {
 class _CheckMedsScreenState extends State<CheckMedsScreen> {
   final medService = MedicineService();
   final medNameController = TextEditingController();
+  final authService = AuthenticationService(FirebaseAuth.instance);
   List allMeds = [];
   List filteredMeds = [];
   String covMed = 'clozapine';
@@ -69,6 +75,24 @@ class _CheckMedsScreenState extends State<CheckMedsScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(tlValues[lang]['navbtns']['0']),
+        actions: [
+          NavDropDownBtn(
+            label: tlValues[lang]['navbtns']['1'],
+            onChange: (value) {
+              lang = value;
+              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const CheckMedsScreen()));
+            }, 
+            items: const [
+              {'name': '🇺🇸 English', 'value': 'en'},
+              {'name': '🇯🇵 Japanese', 'value': 'jp'},
+            ]
+          ),
+          NavbarButton(label: 'Logout', onTap: () async {
+            await authService.signOut();
+            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const AuthenticationWrapper()));
+          }),
+          const SizedBox(width: 40.0,),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 50.0),

@@ -1,7 +1,7 @@
 import 'package:cov_meds/constants/const_functions.dart';
 import 'package:cov_meds/constants/translate_values.dart';
 import 'package:cov_meds/constants/values.dart';
-import 'package:cov_meds/screens/home_page.dart';
+import 'package:cov_meds/screens/check_meds.dart';
 import 'package:cov_meds/services/authencation_service.dart';
 import 'package:cov_meds/services/medicine_service.dart';
 import 'package:cov_meds/widgets/app_button.dart';
@@ -31,7 +31,7 @@ class _SignUpPageState extends State<SignUpPage> {
         medService.addUserEmail(email: emailController.text.trim());
       }
       Navigator.popUntil(context, (route) => route.isFirst);
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomePage()));
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const CheckMedsScreen()));
     } else {
       showAlertDialougue(context, title: 'Error Found', content: msg);
     }
