@@ -24,7 +24,7 @@ class MedListItem extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(name, style: medItemText,),
-              const Text('Select', style: medItemBlueText,)
+              const Icon(Icons.arrow_forward, color: primaryColor,)
             ],
           ),
         ),

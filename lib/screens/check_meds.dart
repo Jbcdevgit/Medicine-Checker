@@ -61,12 +61,20 @@ class _CheckMedsScreenState extends State<CheckMedsScreen> {
   }
 
   onSubmit(String currentMed) async {
+    String result = '';
     preventDoubleTap(context);
-    String result = await medService.checkMedContradictories(mainDrug: covMed, currentMed: currentMed);
+    if(lang == 'jp') {
+      result = await medService.checkMedContradictoryJP(mainDrug: covMed, currentMed: currentMed);
+    } else {
+      result = await medService.checkMedContradictoryEN(mainDrug: covMed, currentMed: currentMed);
+    }
     Navigator.pop(context);
     result = result.replaceAll('{', '');
     result = result.replaceAll('}', '');
-    result = result.replaceAll(',', '\n');
+    result = result.replaceAll('"', '');
+    result = result.replaceAll(':', ':   ');
+    result = result.replaceAll('●', '\n');
+    result = result.replaceAll('\\r\\n', ':  ');
     showAlertDialougue(context, title: 'Search Result',  content: result);
   }
   

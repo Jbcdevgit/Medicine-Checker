@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-String lang = 'en';
+String lang = 'jp';
 const borderColor = Colors.black87;
 const primaryColor = Colors.teal;
 
