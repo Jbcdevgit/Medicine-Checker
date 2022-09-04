@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
         fontFamily: lang == 'jp' ? "Hiragino Sans" : null,
       ),
       locale: locale,
-      supportedLocales: const [locale],
+      supportedLocales: const [locale, Locale('zh', '')],
       localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,

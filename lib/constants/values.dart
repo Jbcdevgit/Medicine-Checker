@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 String lang = 'jp';
-const locale = Locale('ja', '');
+const locale = Locale('ja', 'JP');
 const borderColor = Colors.black87;
 const primaryColor = Colors.teal;
 

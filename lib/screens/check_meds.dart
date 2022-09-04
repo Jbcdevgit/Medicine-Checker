@@ -42,7 +42,7 @@ class _CheckMedsScreenState extends State<CheckMedsScreen> {
       _meds.retainWhere((usr) {
         String searchTerm = medNameController.text.trim().toLowerCase();
         String contactName = usr.toLowerCase();
-        return contactName.substring(0, searchTerm.length) == searchTerm;  
+        return contactName.substring(0, searchTerm.length) == searchTerm;
       });
 
       setState(() => filteredMeds = _meds);
@@ -52,7 +52,7 @@ class _CheckMedsScreenState extends State<CheckMedsScreen> {
   }
 
   getMedicineList() async {
-    if(lang == 'en') {
+    if (lang == 'en') {
       allMeds = await medService.getAllMedsEN();
     } else {
       allMeds = await medService.getAllMedsJP();
@@ -63,21 +63,22 @@ class _CheckMedsScreenState extends State<CheckMedsScreen> {
   onSubmit(String currentMed) async {
     String result = '';
     preventDoubleTap(context);
-    if(lang == 'jp') {
-      result = await medService.checkMedContradictoryJP(mainDrug: covMed, currentMed: currentMed);
+    if (lang == 'jp') {
+      result = await medService.checkMedContradictoryJP(
+          mainDrug: covMed, currentMed: currentMed);
     } else {
-      result = await medService.checkMedContradictoryEN(mainDrug: covMed, currentMed: currentMed);
+      result = await medService.checkMedContradictoryEN(
+          mainDrug: covMed, currentMed: currentMed);
     }
     Navigator.pop(context);
     result = result.replaceAll('{', '');
     result = result.replaceAll('}', '');
     result = result.replaceAll('"', '');
     result = result.replaceAll(':', ':   ');
-    result = result.replaceAll('●', '\n');
     result = result.replaceAll('\\r\\n', ':  ');
-    showAlertDialougue(context, title: 'Search Result',  content: result);
+    showAlertDialougue(context, title: 'Search Result', content: result);
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -85,21 +86,33 @@ class _CheckMedsScreenState extends State<CheckMedsScreen> {
         title: Text(tlValues[lang]['navbtns']['0']),
         actions: [
           NavDropDownBtn(
-            title: Image.asset('assets/images/image.png', height: 18.0,),
-            onChange: (value) {
-              lang = value;
-              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const CheckMedsScreen()));
-            }, 
-            items: const [
-              {'name': '🇺🇸 EN', 'value': 'en'},
-              {'name': '🇯🇵 JP', 'value': 'jp'},
-            ]
+              title: Image.asset(
+                'assets/images/image.png',
+                height: 18.0,
+              ),
+              onChange: (value) {
+                lang = value;
+                Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const CheckMedsScreen()));
+              },
+              items: const [
+                {'name': '🇺🇸 EN', 'value': 'en'},
+                {'name': '🇯🇵 JP', 'value': 'jp'},
+              ]),
+          NavbarButton(
+              label: 'Logout',
+              onTap: () async {
+                await authService.signOut();
+                Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const AuthenticationWrapper()));
+              }),
+          const SizedBox(
+            width: 40.0,
           ),
-          NavbarButton(label: 'Logout', onTap: () async {
-            await authService.signOut();
-            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const AuthenticationWrapper()));
-          }),
-          const SizedBox(width: 40.0,),
         ],
       ),
       body: Padding(
@@ -110,36 +123,46 @@ class _CheckMedsScreenState extends State<CheckMedsScreen> {
             children: [
               Padding(
                 padding: const EdgeInsets.only(bottom: 3.0),
-                child: Text(tlValues[lang]['checkMedicine']['selecbtns']['0']['label'], style: formLabelText,),
+                child: Text(
+                  tlValues[lang]['checkMedicine']['selecbtns']['0']['label'],
+                  style: formLabelText,
+                ),
               ),
               SelectButton(
                 height: 50.0,
                 iconSize: 24.0,
                 borderRadius: 5.0,
-                hintText: tlValues[lang]['checkMedicine']['selecbtns']['0']['hintText'],
+                hintText: tlValues[lang]['checkMedicine']['selecbtns']['0']
+                    ['hintText'],
                 options: medNames,
                 dropdownValue: covMed,
                 onSelect: (value) {
                   setState(() => covMed = value);
                 },
               ),
-              const SizedBox(height: 20.0,),
+              const SizedBox(
+                height: 20.0,
+              ),
               FormInputTextField(
-                label: tlValues[lang]['checkMedicine']['inputFields']['0']['label'],
+                label: tlValues[lang]['checkMedicine']['inputFields']['0']
+                    ['label'],
                 controller: medNameController,
-                hintText: tlValues[lang]['checkMedicine']['inputFields']['0']['hintText'],
+                hintText: tlValues[lang]['checkMedicine']['inputFields']['0']
+                    ['hintText'],
               ),
-              for(var medicine in filteredMeds) MedListItem(
-                name: medicine, 
-                onTap: () {
-                  onSubmit(medicine);
-                  setState(() {
-                    medNameController.clear();
-                    filteredMeds = [];
-                  });
-                }
+              for (var medicine in filteredMeds)
+                MedListItem(
+                    name: medicine,
+                    onTap: () {
+                      onSubmit(medicine);
+                      setState(() {
+                        medNameController.clear();
+                        filteredMeds = [];
+                      });
+                    }),
+              const SizedBox(
+                height: 10.0,
               ),
-              const SizedBox(height: 10.0,),
             ],
           ),
         ),

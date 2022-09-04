@@ -3,27 +3,29 @@ import 'package:http/http.dart' as http;
 
 class MedicineService {
   final String serverIP = 'https://covid-drug-medication.herokuapp.com';
-  
-  Future checkMedContradictoryEN({required String? mainDrug, required String currentMed}) async {
+
+  Future checkMedContradictoryEN(
+      {required String? mainDrug, required String currentMed}) async {
     try {
       var res = await http.post(Uri.parse('$serverIP/covid-drug/search'),
-      body: {
-        'main_drug': mainDrug,
-        'contradictory_drug[0]': currentMed.trim()
-      });
+          body: {
+            'main_drug': mainDrug,
+            'contradictory_drug[0]': currentMed.trim().split('「')[0]
+          });
       return res.body;
     } catch (e) {
       return 'Something went wrong. Please try again later.';
     }
   }
 
-  Future checkMedContradictoryJP({required String? mainDrug, required String currentMed}) async {
+  Future checkMedContradictoryJP(
+      {required String? mainDrug, required String currentMed}) async {
     try {
       var res = await http.post(Uri.parse('$serverIP/covid-drug-jp/search'),
-      body: {
-        'main_drug': mainDrug,
-        'contradictory_drug[0]': currentMed.trim()
-      });
+          body: {
+            'main_drug': mainDrug,
+            'contradictory_drug[0]': currentMed.trim().split('「')[0]
+          });
       return res.body;
     } catch (e) {
       return 'Something went wrong. Please try again later.';
@@ -51,7 +53,7 @@ class MedicineService {
   Future addUserEmail({required String? email}) async {
     try {
       var res = await http.post(Uri.parse('$serverIP/doctor-email/start'),
-      body: { 'email': email });
+          body: {'email': email});
       return res.body;
     } catch (e) {
       return 'Something went wrong. Please try again later.';
