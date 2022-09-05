@@ -32,6 +32,17 @@ class MedicineService {
     }
   }
 
+  Future runTestLoop() async {
+    var data = [];
+    List res = await getAllMedsJP();
+    for (var m in res) {
+      var d =
+          await checkMedContradictoryJP(mainDrug: 'clozapine', currentMed: m);
+      data.add(d);
+    }
+    // print(data);
+  }
+
   Future getAllMedsJP() async {
     try {
       var res = await http.get(Uri.parse('$serverIP/covid-drug-jp/all'));

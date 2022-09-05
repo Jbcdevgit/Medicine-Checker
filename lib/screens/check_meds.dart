@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:cov_meds/constants/const_datas.dart';
 import 'package:cov_meds/constants/const_functions.dart';
 import 'package:cov_meds/constants/translate_values.dart';
@@ -71,12 +73,24 @@ class _CheckMedsScreenState extends State<CheckMedsScreen> {
           mainDrug: covMed, currentMed: currentMed);
     }
     Navigator.pop(context);
-    result = result.replaceAll('{', '');
-    result = result.replaceAll('}', '');
-    result = result.replaceAll('"', '');
-    result = result.replaceAll(':', ':   ');
-    result = result.replaceAll('\\r\\n', ':  ');
-    showAlertDialougue(context, title: 'Search Result', content: result);
+
+    Map map = jsonDecode(result);
+    String med = '', effect = '', generic = '';
+    Map medResponse = {};
+    for (var key in map.keys) {
+      med = key;
+    }
+    medResponse = map[med];
+    effect = medResponse['effect'];
+    generic = medResponse['generic'];
+    effect = effect.replaceAll('\\r\\n', ':  ');
+    showMedicineResultDialouge(
+      context,
+      title: 'Search Result',
+      medicineName: med,
+      generic: generic,
+      effect: effect,
+    );
   }
 
   @override

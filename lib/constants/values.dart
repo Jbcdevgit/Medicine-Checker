@@ -12,6 +12,8 @@ const formLabelText = TextStyle(
   fontSize: 15.0,
 );
 
+const formLabelBold = TextStyle(fontSize: 15.0, fontWeight: FontWeight.bold);
+
 TextStyle medItemText = TextStyle(
   fontSize: 15.0,
   fontFamily: lang == 'jp' ? "Hiragino Sans" : null,
