@@ -44,7 +44,7 @@ class _CheckMedsScreenState extends State<CheckMedsScreen> {
       _meds.retainWhere((usr) {
         String searchTerm = medNameController.text.trim().toLowerCase();
         String contactName = usr.toLowerCase();
-        return contactName.substring(0, searchTerm.length) == searchTerm;
+        return contactName.contains(searchTerm);
       });
 
       setState(() => filteredMeds = _meds);
