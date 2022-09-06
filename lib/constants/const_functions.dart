@@ -1,5 +1,6 @@
 import 'package:cov_meds/constants/values.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 preventDoubleTap(context) {
   showDialog(
@@ -105,7 +106,16 @@ showMedicineResultDialouge(context,
                   style: formLabelBold,
                 ),
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () async {
+                    if (!await launchUrl(Uri.parse(
+                        'https://www.mhlw.go.jp/content/000903772.pdf'))) {
+                      showAlertDialougue(
+                        context,
+                        title: 'Invalid URL',
+                        content: '',
+                      );
+                    }
+                  },
                   child: const Text(
                     'https://www.mhlw.go.jp/content/000903772.pdf',
                     style: medItemBlueText,
