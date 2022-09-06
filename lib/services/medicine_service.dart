@@ -20,12 +20,14 @@ class MedicineService {
 
   Future checkMedContradictoryJP(
       {required String? mainDrug, required String currentMed}) async {
+    if (currentMed.trim().contains('「')) {
+      currentMed = currentMed.trim().split('「')[0];
+    } else if (currentMed.trim().contains('ＯＤ')) {
+      currentMed = currentMed.trim().split('ＯＤ')[0];
+    }
     try {
       var res = await http.post(Uri.parse('$serverIP/covid-drug-jp/search'),
-          body: {
-            'main_drug': mainDrug,
-            'contradictory_drug[0]': currentMed.trim().split('「')[0]
-          });
+          body: {'main_drug': mainDrug, 'contradictory_drug[0]': currentMed});
       return res.body;
     } catch (e) {
       return 'Something went wrong. Please try again later.';
