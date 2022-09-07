@@ -10,7 +10,7 @@ class MedicineService {
       var res = await http.post(Uri.parse('$serverIP/covid-drug/search'),
           body: {
             'main_drug': mainDrug,
-            'contradictory_drug[0]': currentMed.trim().split('「')[0]
+            'contradictory_drug[0]': currentMed.trim().toLowerCase()
           });
       return res.body;
     } catch (e) {
