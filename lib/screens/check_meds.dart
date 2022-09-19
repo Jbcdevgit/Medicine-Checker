@@ -105,15 +105,17 @@ class _CheckMedsScreenState extends State<CheckMedsScreen> {
                 height: 18.0,
               ),
               onChange: (value) {
-                lang = value;
-                Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const CheckMedsScreen()));
+                if (lang != value) {
+                  lang = value;
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const CheckMedsScreen()));
+                }
               },
               items: const [
-                {'name': '🇺🇸 EN', 'value': 'en'},
                 {'name': '🇯🇵 JP', 'value': 'jp'},
+                {'name': '🇺🇸 EN', 'value': 'en'}
               ]),
           NavbarButton(
               label: 'Logout',

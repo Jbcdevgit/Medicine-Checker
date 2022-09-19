@@ -4,8 +4,12 @@ class NavDropDownBtn extends StatelessWidget {
   final Widget title;
   final Function onChange;
   final List<Map<String, String>> items;
-  const NavDropDownBtn({required this.title, required this.onChange, required this.items, Key? key}) : super(key: key);
-
+  const NavDropDownBtn(
+      {required this.title,
+      required this.onChange,
+      required this.items,
+      Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
