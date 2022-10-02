@@ -1,0 +1,14 @@
+{
+  "environments": {
+    "test": {
+      "scripts": {
+        "test": "flutter analyze && flutter test"
+      }
+    }
+  },
+  "buildpacks": [
+    {
+      "url": "ee/heroku-buildpack-flutter-light"
+    }
+  ],
+}
