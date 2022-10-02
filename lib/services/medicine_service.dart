@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:kana_kit/kana_kit.dart';
 
 class MedicineService {
   final String serverIP = 'https://covid-drug-medication.herokuapp.com';
@@ -26,9 +25,6 @@ class MedicineService {
     } else if (currentMed.trim().contains('ＯＤ')) {
       currentMed = currentMed.trim().split('ＯＤ')[0];
     }
-    const kanaKit = KanaKit();
-    currentMed = kanaKit.toKatakana(currentMed);
-
     try {
       var res = await http.post(Uri.parse('$serverIP/covid-drug-jp/search'),
           body: {'main_drug': mainDrug, 'contradictory_drug[0]': currentMed});
