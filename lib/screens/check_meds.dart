@@ -14,7 +14,7 @@ import 'package:cov_meds/widgets/navbar_button.dart';
 import 'package:cov_meds/widgets/select_button.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-// import 'package:kana_kit/kana_kit.dart';
+import 'package:kana_kit/kana_kit.dart';
 
 class CheckMedsScreen extends StatefulWidget {
   const CheckMedsScreen({Key? key}) : super(key: key);
@@ -44,10 +44,10 @@ class _CheckMedsScreenState extends State<CheckMedsScreen> {
     if (medNameController.text.isNotEmpty) {
       _meds.retainWhere((usr) {
         String searchTerm = medNameController.text.trim().toLowerCase();
-        // if (lang == 'jp') {
-        //   const kanaKit = KanaKit();
-        //   searchTerm = kanaKit.toKatakana(searchTerm);
-        // }
+        if (lang == 'jp') {
+          const kanaKit = KanaKit();
+          searchTerm = kanaKit.toKatakana(searchTerm);
+        }
         String contactName = usr.toLowerCase();
         return contactName.contains(searchTerm);
       });
